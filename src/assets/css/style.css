@@ -42,7 +42,7 @@ body {
     align-items: center;
     justify-content: center;
     width: 700px;
-    margin: 10px auto;
+    margin: 30px auto;
     position: relative;
 }
 
@@ -80,10 +80,16 @@ body {
 
     background: #fff;
     border-radius: 8px;
-    box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.5);
 
     padding: 10px;
     position: relative;
+
+    cursor: pointer;
+}
+
+.card:hover {
+    filter: opacity(0.9);
 }
 
 .card img {
@@ -103,5 +109,48 @@ body {
 
 .card .card-text span {
     display: block;
+    background: #080808;
+    width: 100px;
+    padding: 4px 0;
+    margin: 3px auto;
     text-align: center;
+    color: #fff;
+}
+
+#pagination {
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    margin: 40px 0;
+}
+
+#pagination a {
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+}
+
+#pagination a.checked {
+    background: #cbcbcb;
+    border-radius: 8px;
+    padding: 5px 10px;
+    display: block;
+}
+
+@media (max-width: 800px){
+    .search {
+        width: 95%;
+    }
+
+    .header h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 330px){
+    .header h1 {
+        font-size: 2rem;
+    }
 }

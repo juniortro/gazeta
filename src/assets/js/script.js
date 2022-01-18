@@ -1,5 +1,5 @@
 // Formatar data
-const data = new Date();
+const data = new Date()
 
 let day = [
   "Domingo",
@@ -9,9 +9,9 @@ let day = [
   "Quinta-feira",
   "Sexta-feira",
   "Sábado",
-][data.getDay()];
+][data.getDay()]
 
-let date = data.getDate();
+let date = data.getDate()
 
 let month = [
   "Janeiro",
@@ -26,51 +26,51 @@ let month = [
   "Outubro",
   "Novembro",
   "Dezembro",
-][data.getMonth()];
+][data.getMonth()]
 
-let year = data.getFullYear();
+let year = data.getFullYear()
 
-const dateToday = `${day}, ${date} de ${month} de ${year}`;
+const dateToday = `${day}, ${date} de ${month} de ${year}`
 
 const Header = {
   init: function () {
-    this.cacheSelectors();
-    headerDate.innerHTML = dateToday;
+    this.cacheSelectors()
+    headerDate.innerHTML = dateToday
   },
 
   cacheSelectors: function () {
-    this.headerDate = document.getElementById("headerDate");
+    this.headerDate = document.getElementById("headerDate")
   },
-};
+}
 
 const Main = {
   init: function () {
-    this.fetchData();
-    this.cacheSelectors();
-    this.bindEvents();
-    this.baseURL = "https://clube-static.clubegazetadopovo.com.br";
+    this.fetchData()
+    this.cacheSelectors()
+    this.bindEvents()
+    this.baseURL = "https://clube-static.clubegazetadopovo.com.br"
   },
 
   cacheSelectors: function () {
-    this.cards = document.getElementById("cards");
-    this.searchInput = document.getElementById("searchInput");
+    this.cards = document.getElementById("cards")
+    this.searchInput = document.getElementById("searchInput")
   },
 
   establishments: [],
 
   bindEvents: function () {
     this.searchInput.addEventListener("keyup", (e) => {
-      this.showCards();
-    });
+      this.showCards()
+    })
   },
 
   order: function (a, b) {
     if (a.fantasyName > b.fantasyName) {
-      return 1;
+      return 1
     } else if (a.fantasyName < b.fantasyName) {
-      return -1;
+      return -1
     }
-    return 0;
+    return 0
   },
 
   fetchData: function () {
@@ -78,16 +78,16 @@ const Main = {
       "https://gdp-prd-clube.s3.amazonaws.com/api/repository/partners/all.json"
     )
       .then((response) => {
-        return response.json();
+        return response.json()
       })
       .then((e) => {
-        this.establishments = e;
-        this.showCards();
-        this.paginate(e.length);
+        this.establishments = e
+        this.showCards()
+        this.paginate(e.length)
       })
       .catch((error) => {
-        console.log(error);
-      });
+        console.log(error)
+      })
   },
 
   htmlCard: function (e) {
@@ -99,39 +99,39 @@ const Main = {
                     <span>${e.discountAmount}% OFF</span>
                 </div>
             </div>
-            `;
+            `
   },
 
   showCards: function (start = 0, end = this.end, n = 1) {
-    const search = this.searchInput.value;
+    const search = this.searchInput.value
 
     if (search) {
       const result = this.establishments.filter((est) => {
         if (search === "") {
-          return this.establishments;
+          return this.establishments
         }
         if (est.fantasyName.toLowerCase().includes(search.toLowerCase())) {
-          return this.establishments;
+          return this.establishments
         }
-      });
+      })
 
       this.paginate(result.length, n)
 
-      cards.innerHTML = "";
+      cards.innerHTML = ""
 
       result.sort(this.order).forEach((e, idx) => {
         if (idx >= start && idx <= end) {
-          cards.innerHTML += this.htmlCard(e);
+          cards.innerHTML += this.htmlCard(e)
         }
-      });
+      })
     } else {
-    this.paginate(this.establishments.length, n)
-      cards.innerHTML = "";
+      this.paginate(this.establishments.length, n)
+      cards.innerHTML = ""
       this.establishments.sort(this.order).forEach((e, idx) => {
         if (idx >= start && idx <= end) {
-          cards.innerHTML += this.htmlCard(e);
+          cards.innerHTML += this.htmlCard(e)
         }
-      });
+      })
     }
   },
 
@@ -148,21 +148,26 @@ const Main = {
     let end = this.end
     console.log(n)
 
-    pagination.innerHTML = `<a onclick="Main.showCards(${start}, ${end}, ${x + 1})"> << </a>`;
-    // pagination.innerHTML = ''
+    pagination.innerHTML = `<a onclick="Main.showCards(${start}, ${end}, ${
+      x + 1
+    })"> << </a>`
     while (x < totalPages) {
-      x++;
-      if(x + 2 > n && x - 2 < n){
-          pagination.innerHTML += `
-            <a class="${n == x ? 'checked' : ''}" onclick="Main.showCards(${start}, ${end}, ${x})"> ${x} </a>
-            `;
+      x++
+      if (x + 2 > n && x - 2 < n) {
+        pagination.innerHTML += `
+            <a class="${
+              n == x ? "checked" : ""
+            }" onclick="Main.showCards(${start}, ${end}, ${x})"> ${x} </a>
+            `
       }
-      start = end + 1;
-      end = end + this.totalPerPage;
+      start = end + 1
+      end = end + this.totalPerPage
     }
-    pagination.innerHTML += `<a onclick="Main.showCards(${start - this.totalPerPage}, ${end - this.totalPerPage}, ${x})"> >> </a>`;    
+    pagination.innerHTML += `<a onclick="Main.showCards(${
+      start - this.totalPerPage
+    }, ${end - this.totalPerPage}, ${x})"> >> </a>`
   },
-};
+}
 
-Header.init();
-Main.init();
+Header.init()
+Main.init()

@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Overpass', sans-serif;
+}
+
+body {
+    background: #ededed;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: #fff;
+    width: 100%;
+    height: 100px;
+
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+.header h1 {
+    font-size: 2.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    word-spacing: 7px;
+    letter-spacing: -3px;
+}
+
+.header p {
+    font-size: 1rem;
+    color: #4d4d4d;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 700px;
+    margin: 10px auto;
+    position: relative;
+}
+
+.search input {
+    padding: 10px 20px;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    font-size: 1.3rem;
+}
+
+.search i {
+    position: absolute;
+    right: 8px;
+}
+
+.card-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 50px;
+
+    margin-top: 15px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 200px;
+    height: 340px;
+
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.3);
+
+    padding: 10px;
+    position: relative;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.card .card-text {
+    position: absolute;
+    bottom: 10%;
+}
+
+.card .card-text h2 {
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.card .card-text span {
+    display: block;
+    text-align: center;
+}
